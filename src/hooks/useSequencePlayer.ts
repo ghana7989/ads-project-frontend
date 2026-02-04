@@ -97,14 +97,14 @@ export function useSequencePlayer(): UseSequencePlayerReturn {
     }
   }, [playbackQueue, currentIndex, dispatch]);
 
-  // Send heartbeat periodically
+  // Send heartbeat periodically (whenever authenticated, not just when playing)
   useEffect(() => {
-    if (!isAuthenticated || !isPlaying) return;
+    if (!isAuthenticated) return;
 
     const sendStatus = () => {
       const currentItem = playbackQueue[currentIndex];
       sendHeartbeat({
-        status: 'playing',
+        status: isPlaying ? 'playing' : 'idle',
         currentVideoId: currentItem?.videoId,
       });
     };

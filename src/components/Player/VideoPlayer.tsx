@@ -14,6 +14,8 @@ const Player = ReactPlayer as React.ComponentType<{
   src: string; // v3 uses 'src' instead of 'url'
   playing?: boolean;
   controls?: boolean;
+  light?: boolean;
+  volume?: number;
   width?: string | number;
   height?: string | number;
   onReady?: () => void;
